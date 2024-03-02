@@ -54,5 +54,36 @@ public class CodeWarsDesafios
         return new string(masked);
     }
 
+    ///<summary>
+    ///Your task is to make a function that can take any non-negative integer as an argument and return
+    ///it with its digits in descending order. Essentially, rearrange the digits to create the highest possible number.
+    ///</summary>
+    public int DescendingOrder(int num)
+    {
 
+        var numString = num.ToString();
+
+        var numChar = numString.ToCharArray();
+
+        char aux = '0';
+
+        for (int x = 0; x <= numChar.Length - 2; x++)
+        {
+            for (int y = x + 1; y <= numChar.Length - 1; y++)
+            {
+                int val1 = (int)Char.GetNumericValue(numChar[x]);
+                int val2 = (int)Char.GetNumericValue(numChar[y]);
+                if (val1 < val2)
+                {
+                    aux = numChar[x];
+                    numChar[x] = numChar[y];
+                    numChar[y] = aux;
+                }
+            }
+        }
+
+        var result = Int32.Parse(numChar);
+
+        return result;
+    }
 }
