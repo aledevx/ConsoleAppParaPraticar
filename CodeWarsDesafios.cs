@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 namespace ConsoleAppParaPraticar;
@@ -85,5 +86,41 @@ public class CodeWarsDesafios
         var result = Int32.Parse(numChar);
 
         return result;
+    }
+
+    /// <summary>
+    /// This time no story, no theory. The examples below show you how to write function accum:
+    /// Examples:
+    /// accum("abcd") -> "A-Bb-Ccc-Dddd"
+    /// accum("RqaEzty") -> "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
+    /// accum("cwAt") -> "C-Ww-Aaa-Tttt"
+    /// </summary>
+    public String Accum(string s)
+    {
+        List<string> letterList = new List<string>();
+
+        for (int x = 0; x <= s.Length - 1; x++)
+        {
+            char[] charList = new char[x + 1];
+
+            for (int y = 1; y <= x + 1; y++)
+            {
+                string letter = s[x].ToString();
+                if (y != 1)
+                {
+                    charList[y - 1] = Convert.ToChar(letter.ToLower());
+                }
+                else
+                {
+                    charList[y - 1] = Convert.ToChar(letter.ToUpper());
+                }
+            }
+            letterList.Add(new string(charList));
+        }
+
+        var result = string.Join("-", letterList);
+
+        return result;
+
     }
 }
