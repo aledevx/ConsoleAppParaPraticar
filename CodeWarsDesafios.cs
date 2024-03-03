@@ -123,4 +123,31 @@ public class CodeWarsDesafios
         return result;
 
     }
+    ///<summary>
+    ///Write a function that accepts an array of 10 integers (between 0 and 9), that returns a
+    ///string of those numbers in the form of a phone number.
+    ///returns "(123) 456-7890"
+    ///</summary>
+    public string CreatePhoneNumber(int[] numbers)
+    {
+        char[] mask = new char[] { '(', 'x', 'x', 'x', ')', ' ', 'x', 'x', 'x', '-', 'x', 'x', 'x', 'x' };
+
+        int checkpoint = 0;
+
+        for (int x = 0; x <= mask.Length - 1; x++)
+        {
+            if (mask[x] == 'x')
+            {
+                mask[x] = Convert.ToChar(numbers[checkpoint].ToString());
+                checkpoint++;
+            }
+        }
+
+        var phoneNumber = String.Join("", mask);
+
+        return phoneNumber;
+
+        //Interesting solution from the community
+        //return long.Parse(string.Concat(numbers)).ToString("(000) 000-0000");
+    }
 }
